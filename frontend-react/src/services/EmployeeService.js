@@ -12,8 +12,8 @@ class EmployeeService {
         return axios.post(EMPLOYEE_API_BASE_URL, employee);
     }
 
-    getEmployeeById(emailid, password){
-        return axios.get(EMPLOYEE_API_BASE_URL+`/${emailid}`+`/${password}`);
+    getEmployeeById(emailid){
+        return axios.get(EMPLOYEE_API_BASE_URL+`/${emailid}`);
     }
 
     updateEmployee(id, employee){

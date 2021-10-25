@@ -15,10 +15,10 @@ class LoginComponent extends Component {
 		event.preventDefault();
 		if (this.state.userName.trim() !== "" && this.state.password.trim() !== "") {
 			EmployeeService.getEmployeeById(this.state.userName, this.state.password).then(res => {
-				if (Object.keys(res.data).length === 0) {
-					this.setState({ message: "Incorrect Username/Password!!" });
+				let employee = JSON.parse(JSON.stringify(res.data));
+				if (Object.keys(res.data).length === 0 || employee.password !== this.state.password) {
+					this.setState({ message: "Invalid Credentials !!" });
 				} else {
-					let employee = JSON.parse(JSON.stringify(res.data));
 					if (employee.role === "admin") {
 						this.props.history.push("/admin");
 					} else if (employee.role === "employee") {
